@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r0xw4.space</title>
+    <style>
+        /* Twoje style CSS tutaj */
+        /* Dodano kilka dodatkowych stylów, aby poprawić wygląd formularza */
+        /* Styl dla video.js */
+        .video-js {
+            width: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #c91b04;
+            padding: 10px 20px;
+        }
+        #logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        #upload {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        #upload:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+        p {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        #upload-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c91b04;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        #upload-button:hover {
+            background-color: #e64900;
+        }
+        footer {
+            background-color: #c91b04;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+        }
+        /* Styl dla formularza */
+        #upload-form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #444;
+            border: none;
+            color: #ffffff;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c91b04;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e64900;
+        }
+        #generated-link {
+            display: none;
+            margin-top: 20px;
+        }
+        #download-link {
+            color: #c91b04;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" id="logo">r0xw4.space</a>
+        <a href="https://r0xw4.space/upload" id="upload">Upload</a>
+    </header>
+    <div class="container">
+        <h1 id="video-title">Loading...</h1>
+        <p id="video-author">by Loading...</p>
+        <video
+            id="video-player"
+            class="video-js"
+            controls
+            preload="auto"
+        >
+            <source
+                type="video/mp4"
+                src=""
+            />
+        </video>
+        <a href="https://r0xw4.space/upload" id="upload-button">Upload</a>
+        <a href="https://tipply.pl/u/odliczanieorg" id="upload-button">Donate</a>
+    </div>
+    <div class="container">
+        <p>
+            We are the first host not to remove any content. Project created by the creators of odliczanie.org
+        </p>
+    </div>
+    <footer>&copy; 2023 roax.space</footer>
+    <script src="https://vjs.zencdn.net/7.14.3/video.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedId = urlParams.get("id");
+        const author = urlParams.get("author");
+        const title = urlParams.get("title");
+
+        const decodedId = atob(encodedId);
+        const videoTitle = document.getElementById("video-title");
+        const videoAuthor = document.getElementById("video-author");
+
+        videoTitle.textContent = title;
+        videoAuthor.textContent = `by ${author}`;
+
+        const videoPlayer = videojs("video-player", {
+            techOrder: ["html5"],
+        });
+
+        videoPlayer.src({
+            type: "video/mp4",
+            src: decodedId,
+        });
+
+        videoPlayer.ready(function () {
+            this.play();
+        });
+    </script>
+</body>
+</html>
