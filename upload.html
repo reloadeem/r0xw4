@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r0xw4.space</title>
+    <style>
+        /* Twoje style CSS tutaj */
+        /* Dodano kilka dodatkowych stylów, aby poprawić wygląd formularza */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #c91b04;
+            padding: 10px 20px;
+        }
+        #logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        #upload {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        #upload:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+        p {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        #upload-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c91b04;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        #upload-button:hover {
+            background-color: #e64900;
+        }
+        footer {
+            background-color: #c91b04;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+        }
+        /* Styl dla formularza */
+        #upload-form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #444;
+            border: none;
+            color: #ffffff;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c91b04;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e64900;
+        }
+        #generated-link {
+            display: none;
+            margin-top: 20px;
+        }
+        #download-link {
+            color: #c91b04;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" id="logo">r0xw4.space</a>
+        <a href="https://r0xw4.space/upload" id="upload">Upload</a>
+    </header>
+    <div class="container">
+        <h1>r0xw4.space</h1>
+        <p>Safe. Private. Anonymous. Video/audio host</p>
+        <form id="upload-form">
+            <label for="form-type">Choose a form:</label>
+            <select id="form-type">
+                <option value="1">Fast Upload</option>
+                <option value="2" disabled>Normal Upload (soon)</option>
+            </select>
+
+            <label for="file-url">File URL:</label>
+            <input type="text" id="file-url">
+
+            <label for="author">Author:</label>
+            <input type="text" id="author">
+
+            <label for="title">Title:</label>
+            <input type="text" id="title">
+
+            <button type="button" id="generate-link">Generate Link</button>
+        </form>
+        <div id="generated-link">
+            Generated Link:
+            <a id="download-link" href="#">N/A</a>
+        </div>
+        <a href="https://tipply.pl/u/odliczanieorg" id="upload-button">Donate</a>
+    </div>
+    <div class="container">
+        <p>
+            We are the first host not to remove any content. Project created by the creators of odliczanie.org
+        </p>
+    </div>
+    <footer>&copy; 2023 r0ax.space</footer>
+    <script>
+        document.getElementById("generate-link").addEventListener("click", function () {
+            const formType = document.getElementById("form-type").value;
+            const author = document.getElementById("author").value;
+            const title = document.getElementById("title").value;
+            const fileUrl = document.getElementById("file-url").value;
+            const encodedFileUrl = btoa(fileUrl);
+            const downloadLink = document.getElementById("download-link");
+            downloadLink.href = `https://r0xw4.space/v1/v?id=${encodedFileUrl}&author=${author}&title=${title}`;
+            downloadLink.textContent = `https://r0xw4.space/v1/v?id=${encodedFileUrl}&author=${author}&title=${title}`;
+            document.getElementById("generated-link").style.display = "block";
+        });
+    </script>
+</body>
+</html>
