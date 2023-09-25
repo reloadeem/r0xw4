@@ -56,23 +56,23 @@
     <p>Pasted content here:</p>
     <div class="container">
         <div class="paste-box">
-            <textarea id="content" placeholder="Content will appear here" readonly></textarea>
+             <textarea id="content" placeholder="Decoded content will appear here" readonly></textarea>
         </div>
     </div>
     <script>
         // Function to extract the hash value from the URL
         function getHashValue(key) {
-            const matches = location.hash.match(new RegExp(key + '=([^&]*)'));
+            const matches = window.location.search.match(new RegExp(key + '=([^&]*)'));
             return matches ? matches[1] : null;
         }
 
-        // Get the base64 code from the URL hash
-        const base64 = getHashValue('hash');
+        // Get the base64 content from the URL parameters
+        const content = getHashValue('hash');
 
-        if (base64) {
-            // Decode and display the base64 content in the textarea
+        if (content) {
+            // Decode the base64 content and display the decoded text
             try {
-                const decodedContent = atob(base64);
+                const decodedContent = atob(content);
                 document.getElementById('content').value = decodedContent;
             } catch (error) {
                 console.error(error);
