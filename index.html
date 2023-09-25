@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><div style="background-color: red; font-size: 12px; font-family: Cascadia Code">
-  <p>
-   we're currently updating our files api so don't upload any files, okay?
-  </p>
-  </div>
+<head>
   <meta property="og:type" content="website">
 <meta property="og:url" content="https://r0xw4.space/">
 <meta property="og:title" content="r0xw4.space">
-<meta property="og:description" content="best paste/file upload & ai tools by @roax">
+<meta property="og:description" content="best paste/file.txt upload & ai tools by @roax">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>r0xw4.space</title>
@@ -96,8 +92,8 @@
     <p>best file/paste hosting and AI tools</p>
     <div class="container">
         <div class="upload-box">
-            <label id="uploadButton" class="upload-label" for="file">Upload File</label>
-            <input type="file" id="file" accept=".jpg, .png, .gif">
+            <label id="uploadButton" class="upload-label" for="file">Upload File (.txt) </label>
+            <input type="file" id="file" accept=".txt">
             <br>
             <p class="grey-text">or</p>
             <textarea id="content" placeholder="Paste your content here"></textarea>
@@ -114,7 +110,7 @@
             const content = document.getElementById('content').value;
 
             // Check if content is not empty and within the character limit
-            if (content.length > 0 && content.length <= 525) {
+            if (content.length > 0 && content.length <= 1025) {
                 // Convert the content to base64
                 const base64Content = btoa(content);
 
@@ -124,7 +120,7 @@
                 // Redirect to the URL
                 window.location.href = url;
             } else {
-                alert('Content must be between 1 and 525 characters.');
+                alert('Content must be between 1 and 1025 characters.');
             }
         });
 
