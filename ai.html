@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r0xw4.space AI</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px;
+        }
+
+        .ai-box {
+            background-color: #111;
+            border: 2px solid #666;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: #111;
+            border: 2px solid #666;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .ask-button {
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .response {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>r0xw4.space AI</h1>
+    <p>AI status: Currently Offline</p>
+    <div class="container">
+        <div class="ai-box">
+            <textarea id="question" placeholder="Ask your question here"></textarea>
+            <br>
+            <button id="ask" class="ask-button">Ask</button>
+            <br>
+            <div class="response" id="response">
+                <!-- AI responses will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('ask').addEventListener('click', function () {
+            const question = document.getElementById('question').value;
+
+            // Check if the question is not empty
+            if (question.trim() !== '') {
+                // Make a request to the AI service (replace 'YOUR_API_ENDPOINT' and 'YOUR_API_KEY' with actual values)
+                const apiEndpoint = 'YOUR_API_ENDPOINT';
+                const apiKey = 'YOUR_API_KEY';
+
+                fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`,
+                    },
+                    body: JSON.stringify({ question: question }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the AI response
+                    document.getElementById('response').innerHTML = data.answer;
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById('response').innerHTML = 'An error occurred while processing your request.';
+                });
+            } else {
+                alert('Please enter a question before asking.');
+            }
+        });
+    </script>
+</body>
+</html>
