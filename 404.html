@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><div style="background-color: red; font-size: 12px; font-family: Cascadia Code">
-  <p>
-   we're currently updating our files api so don't upload any files, okay?
-  </p>
-  </div>
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://r0xw4.space/">
+    <meta property="og:title" content="r0xw4.space">
+    <meta property="og:description" content="best paste upload by @roax">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>r0xw4.space</title>
@@ -42,18 +42,6 @@
             text-align: center;
         }
 
-        input[type="file"] {
-            display: none;
-        }
-
-        .upload-label {
-            cursor: pointer;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
         textarea {
             width: 100%;
             height: 150px;
@@ -79,7 +67,7 @@
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
-          text-decoration: none;
+            text-decoration: none;
         }
 
         footer {
@@ -88,58 +76,57 @@
     </style>
 </head>
 <body>
-    <h1>r0xw4.space</h1>
-    <p>best file/paste hosting and AI tools</p>
-    <div class="container">
-        <div class="upload-box">
-            <label id="uploadButton" class="upload-label" for="file">Upload File</label>
-            <input type="file" id="file" accept=".jpg, .png, .gif">
-            <br>
-            <p class="grey-text">or</p>
-            <textarea placeholder="Paste your content here"></textarea>
-            <br>
-            <button id="upload-paste" class="upload-button">Upload</button>
-            <br>
-            <p class="grey-text">or</p>
-            <a href="https://r0xw4.space/ai" class="ai-button">Try our AI</a>
-        </div>
+<h1>r0xw4.space</h1>
+<p>best paste hosting</p>
+<div class="container">
+    <div class="upload-box">
+        <textarea id="content" placeholder="Paste your content here"></textarea>
+        <br>
+        <button id="upload-paste" class="upload-button">Upload</button>
+        <br>
     </div>
-      <script>
-        document.getElementById('upload-paste').addEventListener('click', function () {
-            // Get the content from the textarea
-            const content = document.getElementById('content').value;
+</div>
+<script>
+    document.getElementById('upload-paste').addEventListener('click', function () {
+        // Get the content from the textarea
+        const content = document.getElementById('content').value;
+        
+        if (content.length === 0) {
+            alert('Content cannot be empty.');
+            return;
+        }
+        
+        const payload = {
+            title: 'r0xw4.space',
+            author: 'r0xw4.space',
+            text: content,
+            expires: 43200
+        };
 
-            // Check if content is not empty and within the character limit
-            if (content.length > 0 && content.length <= 525) {
-                // Convert the content to base64
-                const base64Content = btoa(content);
-
-                // Create the URL with the base64 content
-                const url = `https://r0xw4.space/paste?hash=${base64Content}`;
-
-                // Redirect to the URL
-                window.location.href = url;
+        // Send the POST request to the API
+        fetch('https://paste.croberts.io/api/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+          agent: new https.Agent({ rejectUnauthorized: false })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.pasteID) {
+                // Redirect to the created paste
+                window.location.href = `https://r0xw4.space/paste?id=${data.pasteID}`;
             } else {
-                alert('Content must be between 1 and 525 characters.');
+                alert('Failed to create paste.');
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while creating the paste.');
         });
-
-        document.getElementById('file').addEventListener('change', function () {
-            const fileInput = document.getElementById('file');
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function () {
-                const base64Content = btoa(reader.result);
-                const url = `https://r0xw4.space/paste?hash=${base64Content}`;
-                window.location.href = url;
-            };
-
-            if (file) {
-                reader.readAsBinaryString(file);
-            }
-        });
-    </script>
-    <footer>&copy; 2023 r0xw4.space</footer>
+    });
+</script>
+<footer>&copy; 2023 r0xw4.space</footer>
 </body>
 </html>
