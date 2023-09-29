@@ -52,16 +52,12 @@
 </head>
 <body>
 <h1>r0xw4.space</h1>
-<p>Pasted content here:</p>
 <div class="container">
     <div class="paste-box">
         <textarea id="content" placeholder="Decoded content will appear here" readonly></textarea>
     </div>
 </div>
 <script>
-    // Omijanie błędu SSL
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
     // Function to extract the paste ID from the URL
     function getPasteID() {
         const matches = window.location.search.match(/id=([^&]*)/);
