@@ -4,7 +4,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://r0xw4.space/">
     <meta property="og:title" content="r0xw4.space">
-    <meta property="og:description" content="best paste upload by @roax">
+    <meta property="og:description" content="best paste upload @roax">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>r0xw4.space</title>
@@ -109,8 +109,7 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(payload),
-          agent: new https.Agent({ rejectUnauthorized: false })
+            body: JSON.stringify(payload)
         })
         .then(response => response.json())
         .then(data => {
