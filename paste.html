@@ -47,38 +47,43 @@
             padding: 10px;
             border-radius: 10px;
             margin: 10px 0;
-            
         }
     </style>
 </head>
 <body>
-    <h1>r0xw4.space</h1>
-    <p>Pasted content here:</p>
-    <div class="container">
-        <div class="paste-box">
-             <textarea id="content" placeholder="Decoded content will appear here" readonly></textarea>
-        </div>
+<h1>r0xw4.space</h1>
+<p>Pasted content here:</p>
+<div class="container">
+    <div class="paste-box">
+        <textarea id="content" placeholder="Decoded content will appear here" readonly></textarea>
     </div>
-    <script>
-        // Function to extract the hash value from the URL
-        function getHashValue(key) {
-            const matches = window.location.search.match(new RegExp(key + '=([^&]*)'));
-            return matches ? matches[1] : null;
-        }
+</div>
+<script>
+    // Omijanie błędu SSL
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-        // Get the base64 content from the URL parameters
-        const content = getHashValue('hash');
+    // Function to extract the paste ID from the URL
+    function getPasteID() {
+        const matches = window.location.search.match(/id=([^&]*)/);
+        return matches ? matches[1] : null;
+    }
 
-        if (content) {
-            // Decode the base64 content and display the decoded text
-            try {
-                const decodedContent = atob(content);
-                document.getElementById('content').value = decodedContent;
-            } catch (error) {
+    const pasteID = getPasteID();
+
+    if (pasteID) {
+        // Fetch the paste content from the server
+        fetch(`https://paste.croberts.io/view/raw/${pasteID}`)
+            .then(response => response.text())
+            .then(content => {
+                document.getElementById('content').value = content;
+            })
+            .catch(error => {
                 console.error(error);
-                document.getElementById('content').value = 'Error decoding content.';
-            }
-        }
-    </script>
+                document.getElementById('content').value = 'Error fetching content.';
+            });
+    } else {
+        document.getElementById('content').value = 'No paste ID found in the URL.';
+    }
+</script>
 </body>
 </html>
