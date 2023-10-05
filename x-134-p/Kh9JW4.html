@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>r0xw4</title>
     <style>
+        /* Zmiana koloru paska przewijania na czarny */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Kolor paska przewijania */
+::-webkit-scrollbar-thumb {
+    background-color: #000;
+}
+
+/* Kolor i styl paska przewijania w momencie najechania myszką */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #333;
+}
+
+/* Kolor i styl obszaru paska przewijania */
+::-webkit-scrollbar-track {
+    background-color: #222;
+}
+
+/* Zmiana kształtu paska przewijania na prostokątny */
+::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 0;
+}
+
+/* Zmiana kształtu paska przewijania na prostokątny */
+::-webkit-scrollbar-thumb:vertical {
+    border-radius: 0;
+}
+
         body {
             background-color: #000;
             color: #fff;
@@ -30,11 +60,29 @@
             border-radius: 5px;
             font-family: Arial, sans-serif;
         }
+
+                .devil {
+            font-size: 0.75em;
+            color: #ff0000;
+            white-space: pre;
+        }
+        
     </style>
 </head>
 <body>
   <a href="https://r0xw4.space/remove"> request removal</a> <br>
-  <a href="https://r0xw4.space/info"> info </a> 
+  <a href="https://r0xw4.space/info"> info </a> <br>
+    <br>
+    <p class="devil">
+     .-._                                                   _,-,
+   `._`-._                                           _,-'_,'
+      `._ `-._        __.-----.__        _,-'  _,'
+         `._   `#==="""           """===#'   _,'
+            `._/)  ._               _.  (\_,'
+             )*'     **.__     __.**     '*( 
+             #  .==..__  ""   ""  __..==,  # 
+             #   `"._(_).       .(_)_."'   #
+    </p> <br>
     <div id="container">
         <textarea id="custom-textarea" placeholder="x" readonly></textarea>
     </div>
