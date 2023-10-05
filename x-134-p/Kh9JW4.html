@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r0xw4</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        #custom-textarea {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 60%;
+            height: 200px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+  <a href="https://r0xw4.space/remove"> request removal</a> <br>
+  <a href="https://r0xw4.space/info"> info </a> 
+    <div id="container">
+        <textarea id="custom-textarea" placeholder="x" readonly></textarea>
+    </div>
+
+    <script>
+        
+        function loadFile() {
+            const textarea = document.getElementById('custom-textarea');
+            fetch('Kh9JW4.txt')
+                .then(response => response.text())
+                .then(data => {
+                    textarea.value = data;
+                })
+                .catch(error => {
+                    textarea.value = 'error: ' + error;
+                });
+        }
+
+        
+        window.onload = loadFile;
+    </script>
+</body>
+</html>
