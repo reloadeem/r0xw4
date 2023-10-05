@@ -3,58 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>r0xw4</title>
+    <title>execute them</title>
     <style>
+      /* Wyłączanie paska przewijania */
+body {
+    overflow: hidden;
+}
+
         body {
             background-color: #000;
             color: #fff;
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
-        }
-
-        #container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 80vh;
+            height: 100vh;
         }
 
-        #custom-textarea {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            width: 60%;
-            height: 200px;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;
+        .devil {
+            font-size: 0.75em;
+            color: #ff0000;
+            white-space: pre;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.86em;
         }
     </style>
 </head>
 <body>
-  <a href="https://r0xw4.space/remove"> request removal</a> <br>
-  <a href="https://r0xw4.space/info"> info </a> 
-    <div id="container">
-        <textarea id="custom-textarea" placeholder="x" readonly></textarea>
-    </div>
-
-    <script>
-        
-        function loadFile() {
-            const textarea = document.getElementById('custom-textarea');
-            fetch('unclaimed.txt')
-                .then(response => response.text())
-                .then(data => {
-                    textarea.value = data;
-                })
-                .catch(error => {
-                    textarea.value = 'error: ' + error;
-                });
-        }
-
-        
-        window.onload = loadFile;
-    </script>
+    <p class="devil">
+     .-._                                                   _,-,
+   `._`-._                                           _,-'_,'
+      `._ `-._        __.-----.__        _,-'  _,'
+         `._   `#==="""           """===#'   _,'
+            `._/)  ._               _.  (\_,'
+             )*'     **.__     __.**     '*( 
+             #  .==..__  ""   ""  __..==,  # 
+             #   `"._(_).       .(_)_."'   #
+    </p>
+    <a href="https://r0xw4.space/execute">you can now execute it <3</a>
 </body>
 </html>
